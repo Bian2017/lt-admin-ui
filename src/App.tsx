@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Button, { ButtonSize, ButtonType } from './components/Button/button';
 
 function App() {
