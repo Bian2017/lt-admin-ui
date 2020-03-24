@@ -12,6 +12,9 @@ function App() {
         <Button btnType={ButtonType.Link} href="https://www.baidu.com">
           百度链接
         </Button>
+        <Button btnType={ButtonType.Link} href="https://www.baidu.com" disabled>
+          百度链接
+        </Button>
         <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
