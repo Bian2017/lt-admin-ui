@@ -13,11 +13,11 @@ function App() {
         <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
           Danger Small
         </Button>
-        <Button btnType={ButtonType.Link} href="https://www.baidu.com">
-          百度链接
+        <Button btnType={ButtonType.Link} href="https://www.baidu.com" target="_blank">
+          Link
         </Button>
         <Button btnType={ButtonType.Link} href="https://www.baidu.com" disabled>
-          百度链接
+          Link Disabled
         </Button>
       </header>
     </div>
