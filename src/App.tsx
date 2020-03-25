@@ -5,9 +5,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Button disabled>按钮</Button>
+        <Button>Default</Button>
+        <Button disabled>Default Disabled</Button>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
-          按钮
+          Large Primary
+        </Button>
+        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
+          Danger Small
         </Button>
         <Button btnType={ButtonType.Link} href="https://www.baidu.com">
           百度链接
@@ -15,9 +19,6 @@ function App() {
         <Button btnType={ButtonType.Link} href="https://www.baidu.com" disabled>
           百度链接
         </Button>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
       </header>
     </div>
   );
