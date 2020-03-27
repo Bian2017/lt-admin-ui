@@ -30,9 +30,14 @@ const generateMenu = (props: MenuProps) => {
 let wrapper: RenderResult, menuElement: HTMLElement, activeElement: HTMLElement, disabledElement: HTMLElement;
 
 describe('test Menu and MenuItem component', () => {
-  // 在每个case运行之前，都会运行该函数
+  /**
+   * 针对多个测试case运行前需获取相同的元素，可以通过beforeEach避免重复设置。
+   * 在每个case运行之前，都会运行该函数
+   */
   beforeEach(() => {
     wrapper = render(generateMenu(testProps));
+
+    // 如果要取Menu节点，可以在外层元素加上data-testid
     menuElement = wrapper.getByTestId('test-menu');
     activeElement = wrapper.getByText('active');
     disabledElement = wrapper.getByText('disabled');
@@ -40,6 +45,7 @@ describe('test Menu and MenuItem component', () => {
 
   it('should render correct Menu and MenuItem based on default props', () => {
     expect(menuElement).toBeInTheDocument();
+
     // 应该有menu test等两个class属性
     expect(menuElement).toHaveClass('menu test');
 
@@ -68,6 +74,13 @@ describe('test Menu and MenuItem component', () => {
   });
 
   it('should render vertical mode when mode is set to vertical', () => {
+    /**
+     * 调用cleanup避免变量命名存在冲突。在其他测试case中没有出现wrapper重复命名情况，是因为
+     * 框架自动调用了cleanup函数。
+     *
+     * Cleanup is called after each test automatically by default if the testing framework
+     * you're using supports the afterEach global (like mocha, Jest, and Jasmine).
+     */
     cleanup();
 
     const wrapper = render(generateMenu(testVerProps));
