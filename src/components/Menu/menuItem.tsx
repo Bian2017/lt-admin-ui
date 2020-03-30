@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { MenuContext } from './menu';
 
 export interface MenuItemProps {
-  index: number; // 确定现在是哪一项
+  index?: number; // 确定现在是哪一项
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -20,7 +20,7 @@ const MenuItem: React.FC<MenuItemProps> = props => {
   });
 
   const handleClick = () => {
-    if (context.onSelect && !disabled) {
+    if (context.onSelect && !disabled && typeof index === 'number') {
       context.onSelect(index);
     }
   };
@@ -31,5 +31,9 @@ const MenuItem: React.FC<MenuItemProps> = props => {
     </li>
   );
 };
+
+// 添加 displayName 静态属性，用于判断组件类型。
+// displayName 字符串多用于调试消息。
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;

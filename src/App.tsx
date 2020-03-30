@@ -11,6 +11,7 @@ function App() {
           <MenuItem index={0}>cool link</MenuItem>
           <MenuItem index={1}>cool link 2</MenuItem>
           <MenuItem index={2}>cool link 3</MenuItem>
+          <li>hahah s</li>
         </Menu>
         <Button>Default</Button>
         <Button disabled>Default Disabled</Button>
