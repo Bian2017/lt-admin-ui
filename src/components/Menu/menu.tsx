@@ -29,7 +29,8 @@ const Menu: React.FC<MenuProps> = props => {
   const [currentActive, setActive] = useState(defaultIndex);
 
   const cls = classNames('menu', className, {
-    'menu-vertical': mode === 'vertical'
+    'menu-vertical': mode === 'vertical',
+    'menu-horizontal': mode !== 'vertical'
   });
 
   const handleClick = (index: number) => {
@@ -55,7 +56,7 @@ const Menu: React.FC<MenuProps> = props => {
       const childElement = child as React.FunctionComponentElement<MenuItemProps>;
       const { displayName } = childElement.type;
 
-      if (displayName === 'MenuItem') {
+      if (displayName === 'MenuItem' || displayName === 'SubMenu') {
         // 将index属性添加到childElement实例中，这样就不需为每个子菜单添加index属性
         // cloneElement: 以element元素为样板，克隆并返回新的React元素。返回元素的props是将新的props与原始元素的props浅层合并后的结果
         return React.cloneElement(childElement, {
