@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu defaultIndex={0} onSelect={index => console.log(index)} mode={'vertical'}>
+        <Menu defaultIndex="0" onSelect={index => console.log(index)} defaultOpenSubMenus={['2']} mode="vertical">
           <MenuItem>cool link</MenuItem>
           <MenuItem>cool link 2</MenuItem>
           <SubMenu title="dropdown">
