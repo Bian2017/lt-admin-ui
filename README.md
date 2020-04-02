@@ -45,10 +45,27 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Create React App
 
-项目创建：
+## 项目创建
 
 > npx create-react-app ts-with-react --typescript
 
 使用`Sass`:
 
 > yarn add node-sass
+
+## 图标解决方案
+
+借助 react-fontawesome、[fontawesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free)第三方库使用 SVG 方案。
+
+```Bash
+$ npm i --save @fortawesome/fontawesome-svg-core
+$ npm i --save @fortawesome/free-solid-svg-icons
+$ npm i --save @fortawesome/react-fontawesome
+```
+
+**注：**
+
+SVG 方案优势：
+
+- 完全可控
+- 即取即用

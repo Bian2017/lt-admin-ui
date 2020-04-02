@@ -1,13 +1,21 @@
 import React from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCoffee, fas } from '@fortawesome/free-solid-svg-icons';
 import Button, { ButtonSize, ButtonType } from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
+import Icon from './components/Icon/icon';
+
+// 通过创建library来引用Icons
+// library.add(faCoffee);
+library.add(fas); // fas 所有图表的集合
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Icon icon="coffee" theme="primary" size="10x" />
         <Menu defaultIndex="0" onSelect={index => console.log(index)} defaultOpenSubMenus={['2']} mode="vertical">
           <MenuItem>cool link</MenuItem>
           <MenuItem>cool link 2</MenuItem>

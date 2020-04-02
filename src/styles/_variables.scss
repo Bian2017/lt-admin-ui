@@ -39,6 +39,18 @@ $danger: $red !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
 
+// 创建map结构$theme-colors，用于进行相关遍历。SASS中的map结构，类似JS中的Object
+$theme-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark
+);
+
 /**
 * 字体家族
 */

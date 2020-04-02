@@ -1,0 +1,7 @@
+// 可以通过each来遍历list或者map(map类似js中的Object)
+@each $key, $val in $theme-colors {
+  // 在CSS选择器上，如果要使用变量，需采用如下方式#{$variable}，类似占位符
+  .icon-#{$key} {
+    color: $val;
+  }
+}
