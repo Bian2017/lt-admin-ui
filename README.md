@@ -27,25 +27,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-## Create React App
-
-## 项目创建
+## 一、项目创建
 
 > npx create-react-app ts-with-react --typescript
 
@@ -53,7 +35,9 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 > yarn add node-sass
 
-## 图标解决方案
+## 二、开发注意事项
+
+### 2.1 图标解决方案
 
 借助 react-fontawesome、[fontawesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free)第三方库使用 SVG 方案。
 
@@ -69,3 +53,19 @@ SVG 方案优势：
 
 - 完全可控
 - 即取即用
+
+### 2.2 React Transition Group
+
+#### 2.2.1 CSSTransition
+
+此 Transition 组件用于 CSS 动画过渡，灵感来源于 ng-animate 库。
+
+CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTransition 组件应用了一系列 className 名来对这些动作进行描述。首先 appear 被应用到组件 className 上，接着添加“active”类名来激活 CSS 动画。在动画完成后，原 class 改变为 done 表明组件动画已经应用完成并加载完成。
+
+当组件的 in 属性变为 true 时，组件的 className 将被赋值为 example-enter，并在下一刻添加 example-enter-active 的 CSS class 名。这些都是基于 className 属性的约定。即：原组件带有 className="animate-rotate"，则 enter 状态时，变为"animate-rotate-enter"
+
+##### 属性
+
+**in**
+
+控制组件应用动画的属性值，通常将一个 react 的组件 state 赋值给它，通过改变 state，从而开启和关闭动画。
