@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 一、脚本
 
 In the project directory, you can run:
 
@@ -26,6 +26,8 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### yarn run storybook
 
 ## 一、项目创建
 
@@ -69,3 +71,11 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 **in**
 
 控制组件应用动画的属性值，通常将一个 react 的组件 state 赋值给它，通过改变 state，从而开启和关闭动画。
+
+### 2.3 Storybook
+
+#### 2.3.1 安装
+
+采用自动安装方式安装 storybook。
+
+> npx -p @storybook/cli sb init
