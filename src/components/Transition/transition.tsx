@@ -7,14 +7,15 @@ type AnimationName = 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-i
 
 interface TransitionProps extends CSSTransitionProps {
   animation?: AnimationName;
+  wrapper?: boolean; // 防止子节点的transition属性覆盖动画效果，通过包裹节点来避免这一问题
 }
 
 const Transition: React.FC<TransitionProps> = props => {
-  const { children, classNames, animation, ...restProps } = props;
+  const { children, wrapper, classNames, animation, ...restProps } = props;
 
   return (
     <CSSTransition classNames={classNames ? classNames : animation} {...restProps}>
-      {children}
+      {wrapper ? <div>{children}</div> : children}
     </CSSTransition>
   );
 };
