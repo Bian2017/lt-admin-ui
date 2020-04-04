@@ -78,4 +78,4 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 
 采用自动安装方式安装 storybook。
 
-> npx -p @storybook/cli sb init
+> npx -p @storybook/cli sb init --type react_scripts
