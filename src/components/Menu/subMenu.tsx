@@ -1,9 +1,9 @@
 import React, { useContext, useState, FunctionComponentElement } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 import Icon from '../Icon/icon';
+import Transition from '../Transition/transition';
 
 export interface SubMenuProps {
   index?: string;
@@ -73,13 +73,11 @@ const SubMenu: React.FC<SubMenuProps> = ({ index, title, children, className }) 
       }
     });
 
-    // appear 表示如果menOpen第一次值为true的话，也会执行动画过程
-    // unmoutOnExit 表示当状态达到exit-done时，被包裹的节点会被unmount，即子节点不存在。反之依然，一开始如果menuOpen是false状态，子节点是不存在的。
     // 当menuOpen为true时，子节点会被动态添加DOM节点中
     return (
-      <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear unmountOnExit>
+      <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
         <ul className={subMenuCls}>{childrenComponent}</ul>
-      </CSSTransition>
+      </Transition>
     );
   };
 

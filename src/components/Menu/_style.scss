@@ -85,6 +85,21 @@
   }
 }
 
+.menu-horizontal {
+  > .menu-item {
+    border-bottom: $menu-item-active-border-width solid transparent;
+  }
+  .submenu {
+    position: absolute;
+    background: $white;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: $submenu-box-shadow;
+  }
+}
+
 .menu-vertical {
   flex-direction: column;
   border-bottom: 0;

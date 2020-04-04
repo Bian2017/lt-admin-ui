@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Icon icon="coffee" theme="primary" size="10x" />
-        <Menu defaultIndex="0" onSelect={index => console.log(index)} defaultOpenSubMenus={['2']}>
+        <Menu defaultIndex="0" onSelect={index => console.log(index)} mode={'vertical'}>
           <MenuItem>cool link</MenuItem>
           <MenuItem>cool link 2</MenuItem>
           <SubMenu title="dropdown">
