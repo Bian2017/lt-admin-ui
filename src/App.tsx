@@ -28,16 +28,16 @@ function App() {
         </Menu>
         <Button>Default</Button>
         <Button disabled>Default Disabled</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+        <Button btnType="primary" size="lg">
           Large Primary
         </Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
+        <Button btnType="danger" size="sm">
           Danger Small
         </Button>
-        <Button btnType={ButtonType.Link} href="https://www.baidu.com" target="_blank">
+        <Button btnType="link" href="https://www.baidu.com" target="_blank">
           Link
         </Button>
-        <Button btnType={ButtonType.Link} href="https://www.baidu.com" disabled>
+        <Button btnType="link" href="https://www.baidu.com" disabled>
           Link Disabled
         </Button>
       </header>
