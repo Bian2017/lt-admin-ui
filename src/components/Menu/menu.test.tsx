@@ -5,15 +5,29 @@ import Menu, { MenuProps } from './menu';
 import MenuItem from './menuItem';
 import SubMenu from './subMenu';
 
+jest.mock('../Icon/icon', () => {
+  return () => {
+    return <i className="fa" />;
+  };
+});
+
+jest.mock('react-transition-group', () => {
+  return {
+    CSSTransition: (props: any) => {
+      return props.children;
+    },
+  };
+});
+
 const testProps: MenuProps = {
   defaultIndex: '0',
   onSelect: jest.fn(),
-  className: 'test'
+  className: 'test',
 };
 
 const testVerProps: MenuProps = {
   defaultIndex: '0',
-  mode: 'vertical'
+  mode: 'vertical',
 };
 
 const generateMenu = (props: MenuProps) => {
