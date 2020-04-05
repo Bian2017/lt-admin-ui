@@ -4,9 +4,15 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+// 通过创建library来引用Icons
+// library.add(faCoffee);
+library.add(fas); // fas 所有图表的集合
 
 const wrapperStyle: React.CSSProperties = {
-  padding: '20px 40px'
+  padding: '20px 40px',
 };
 
 // 创建一个样式包裹的装饰器
@@ -24,6 +30,6 @@ addDecorator(withInfo);
 addParameters({
   info: {
     inline: true, // 直接展示所有信息
-    header: false
-  }
+    header: false,
+  },
 });
