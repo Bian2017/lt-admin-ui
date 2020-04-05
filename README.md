@@ -89,7 +89,7 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 
 #### 2.3.3 使用 react-docgen 插件
 
-要想使用插件 `react-docgen`，还需安装相应的 loader，然后配置相应的 main.js。
+如果想通过注释方式来生成文档，可以使用 `react-docgen` 插件。要使用该插件，还需安装相应的 loader，然后配置 main.js 文件。
 
 > yarn add react-docgen-typescript-loader -D
 
@@ -97,7 +97,7 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 {
   loader: require.resolve('react-docgen-typescript-loader'),
   options: {
-    // 避免字符串字面量显示别名
+    // 将枚举或者联合类型转换成字符串形式，避免字符串字面量显示别名。
     shouldExtractLiteralValuesFromEnum: true,
     // 避免显示原生内置属性
     propFilter: prop => {
@@ -111,4 +111,4 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 }
 ```
 
-关于如何添加正确的注释，可以参照[JSDoc](https://jsdoc.app/about-getting-started.html)。
+通过注释方式生成文档，还需编写正确的注释格式，这可参照[JSDoc](https://jsdoc.app/about-getting-started.html)标准来编写。

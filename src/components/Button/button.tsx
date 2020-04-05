@@ -45,8 +45,10 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 // react-docgen插件要求Button组件还需通过export方式导出
 /**
- * 这是Button组件。
- * ## Button Header
+ * 页面中最常用的按钮元素，适合于完成特定的交互。
+ *
+ * ## 引用方法
+ *
  * ~~~js
  * import { Button } from 'lt-admin-ui'
  * ~~~
