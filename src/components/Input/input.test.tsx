@@ -15,7 +15,7 @@ describe('test Input component', () => {
     expect(testNode).toBeInTheDocument();
     expect(testNode).toHaveClass('lt-input-inner');
 
-    fireEvent.change(testNode, { target: { value: '11' } });
+    fireEvent.change(testNode, { target: { value: '11' } }); // 通过change改变input值
     expect(defaultProps.onChange).toHaveBeenCalled();
     expect(testNode.value).toEqual('11');
   });

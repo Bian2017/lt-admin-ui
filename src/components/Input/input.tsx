@@ -46,6 +46,7 @@ export const Input: FC<InputProps> = (props) => {
     return value;
   };
 
+  // 通过如下方式，解决React组件从非受控组件转化成受控组件
   if ('value' in props) {
     delete restProps.defaultValue;
 
