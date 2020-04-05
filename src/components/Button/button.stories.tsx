@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions'; // 记录组件的行为
+import { withInfo } from '@storybook/addon-info';
 
 import Button from './button';
 
@@ -25,6 +26,19 @@ const buttonWithType = () => (
 );
 
 storiesOf('Button Component', module)
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      text: `
+        按钮用于开始一个即时操作
+        ## 代码演示
+        ~~~js
+        import Button from 'lt-admin-ui'
+        ~~~
+      `,
+      inline: true // 直接展示所有信息
+    }
+  })
   .add('默认 Button', defaultButton)
-  .add('不同尺寸的 Button', buttonWithSize)
+  .add('不同尺寸的 Button', buttonWithSize, { info: { inline: false } })
   .add('不同类型的 Button', buttonWithType);

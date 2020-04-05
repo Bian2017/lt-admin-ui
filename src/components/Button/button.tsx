@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 // export enum ButtonSize {
@@ -31,8 +31,8 @@ interface BaseButtonProps {
  * 2. 交叉类型(Intersection Types): 通过 & 将多个类型合成一个类型
  * 3. 通过 type 对属性起别名
  */
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>;
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>;
+type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 
 /**
  * 针对 Button 或者 a 链接，可能各自存在某些属性是必须的，所以需将所有属性设置成可选。
@@ -40,7 +40,8 @@ type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElemen
  */
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-const Button: React.FC<ButtonProps> = props => {
+// react-docgen插件要求Button组件还需通过export方式导出
+export const Button: FC<ButtonProps> = props => {
   const {
     btnType,
     // 添加用户自定义的className

@@ -79,3 +79,30 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 采用自动安装方式安装 storybook。
 
 > npx -p @storybook/cli sb init --type react_scripts
+
+安装 storybook addon-info 插件。
+
+> yarn add @storybook/addon-info -D
+> yarn add @types/storybook\_\_addon-info -D
+
+要想使用插件 `react-docgen`，还需安装相应的 loader，然后配置相应的 main.js
+
+> yarn add react-docgen-typescript-loader -D
+
+```JS
+{
+  loader: require.resolve('react-docgen-typescript-loader'),
+  options: {
+    // 避免字符串字面量显示别名
+    shouldExtractLiteralValuesFromEnum: true,
+    // 避免显示原生内置属性
+    propFilter: prop => {
+      if (prop.parent) {
+        return !prop.parent.fileName.includes('node_modules');
+      }
+
+      return true;
+    }
+  }
+}
+```
