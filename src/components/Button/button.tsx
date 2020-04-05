@@ -19,8 +19,11 @@ export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
 
 interface BaseButtonProps {
   className?: string;
+  /** 设置 Button 的禁用状态 */
   disabled?: boolean;
+  /** 设置 Button 的尺寸 */
   size?: ButtonSize;
+  /** 设置 Button 的类型 */
   btnType?: ButtonType;
   children?: React.ReactNode;
   href?: string;
@@ -41,6 +44,13 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 // react-docgen插件要求Button组件还需通过export方式导出
+/**
+ * 这是Button组件。
+ * ## Button Header
+ * ~~~js
+ * import { Button } from 'lt-admin-ui'
+ * ~~~
+ */
 export const Button: FC<ButtonProps> = props => {
   const {
     btnType,

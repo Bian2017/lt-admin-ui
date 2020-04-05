@@ -74,18 +74,22 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 
 ### 2.3 Storybook
 
-#### 2.3.1 安装
+#### 2.3.1 安装 storybook
 
 采用自动安装方式安装 storybook。
 
 > npx -p @storybook/cli sb init --type react_scripts
 
-安装 storybook addon-info 插件。
+#### 2.3.2 安装 addon-info 插件
+
+安装 addon-info 插件。
 
 > yarn add @storybook/addon-info -D
 > yarn add @types/storybook\_\_addon-info -D
 
-要想使用插件 `react-docgen`，还需安装相应的 loader，然后配置相应的 main.js
+#### 2.3.3 使用 react-docgen 插件
+
+要想使用插件 `react-docgen`，还需安装相应的 loader，然后配置相应的 main.js。
 
 > yarn add react-docgen-typescript-loader -D
 
@@ -106,3 +110,5 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
   }
 }
 ```
+
+关于如何添加正确的注释，可以参照[JSDoc](https://jsdoc.app/about-getting-started.html)。
