@@ -1,8 +1,9 @@
-import React, { FC, useState, useEffect, ChangeEvent, ReactElement, KeyboardEvent } from 'react';
+import React, { FC, useState, useEffect, useRef, ChangeEvent, ReactElement, Keyboa } from 'react';
 import classNames from 'classnames';
 import Input, { InputProps } from '../Input/input';
 import Icon from '../Icon/icon';
 import useDebounce from '../../hooks/useDebounce';
+import useClickOutside from '../../hooks/useClickOutside';
 
 interface DataSourceObject {
   value: string;
@@ -25,11 +26,19 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [loading, setLoading] = useState(false);
   const [highlightIndex, setHighlightIndex] = useState(-1);
 
+  const triggerSearch = useRef(false); // 在多次渲染过程中，都会保持相同的引用
+  // 点击组件外部区域关闭下拉菜单(利用useRef跟DOM节点打交道)
+  const componentRef = useRef<HTMLDivElement>(null);
+
   // 自定义Hook
   const debouncedValue = useDebounce(inputValue, 500);
 
+  useClickOutside(componentRef, () => {
+    setSuggestions([]);
+  });
+
   useEffect(() => {
-    if (debouncedValue) {
+    if (debouncedValue && triggerSearch.current) {
       const results = fetchSuggestions(debouncedValue);
       // 判断results是否是Promise对象
       if (results instanceof Promise) {
@@ -86,6 +95,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     const value = e.target.value.trim();
 
     setInputValue(value);
+    triggerSearch.current = true;
   };
 
   const handleSelect = (item: DataSourceType) => {
@@ -94,6 +104,9 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     if (onSelect) {
       onSelect(item);
     }
+
+    // 在选择下拉选项的过程中，不希望触发搜索
+    triggerSearch.current = false;
   };
 
   // 支持下拉菜单的自定义模板渲染
@@ -121,8 +134,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   };
 
   return (
-    <div className="lt-auto-complete" onKeyDown={handleKeyDown}>
-      <Input value={inputValue} onChange={handleChange} {...restProps} />
+    <div className="lt-auto-complete" ref={componentRef}>
+      <Input value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handleKeyDown} />
       {loading && (
         <ul>
           <Icon icon="spinner" spin />
