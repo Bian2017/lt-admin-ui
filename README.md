@@ -112,3 +112,11 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 ```
 
 通过注释方式生成文档，还需编写正确的注释格式，这可参照[JSDoc](https://jsdoc.app/about-getting-started.html)标准来编写。
+
+## 三、其他
+
+### 3.1 如何运行单个测试
+
+> npm test -- -t "auto"
+
+注："auto"表示测试用例的部分名称。

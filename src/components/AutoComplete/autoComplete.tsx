@@ -4,6 +4,7 @@ import Input, { InputProps } from '../Input/input';
 import Icon from '../Icon/icon';
 import useDebounce from '../../hooks/useDebounce';
 import useClickOutside from '../../hooks/useClickOutside';
+import Transition from '../Transition/transition';
 
 interface DataSourceObject {
   value: string;
@@ -25,6 +26,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const [suggestions, setSuggestions] = useState<DataSourceType[]>([]);
   const [loading, setLoading] = useState(false);
   const [highlightIndex, setHighlightIndex] = useState(-1);
+  const [showDropdown, setShowDropDown] = useState(false);
 
   const triggerSearch = useRef(false); // 在多次渲染过程中，都会保持相同的引用
   // 点击组件外部区域关闭下拉菜单(利用useRef跟DOM节点打交道)
@@ -46,12 +48,19 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         results.then((data) => {
           setLoading(false);
           setSuggestions(data);
+          if (data.length > 0) {
+            setShowDropDown(true);
+          }
         });
       } else {
         setSuggestions(results);
+        setShowDropDown(true);
+        if (results.length > 0) {
+          setShowDropDown(true);
+        }
       }
     } else {
-      setSuggestions([]);
+      setShowDropDown(false);
     }
     setHighlightIndex(-1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +93,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
         break;
       // ESC键
       case 27:
-        setSuggestions([]);
+        setShowDropDown(false);
         break;
       default:
         break;
@@ -100,7 +109,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
 
   const handleSelect = (item: DataSourceType) => {
     setInputValue(item.value);
-    setSuggestions([]);
+    setShowDropDown(false);
     if (onSelect) {
       onSelect(item);
     }
@@ -117,31 +126,41 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   // 产生下拉菜单
   const generateDropdown = () => {
     return (
-      <ul>
-        {suggestions.map((item, index) => {
-          const cls = classNames('suggestion-item', {
-            'item-highlighted': index === highlightIndex,
-          });
+      <Transition
+        in={showDropdown || loading}
+        animation="zoom-in-top"
+        timeout={300}
+        onExited={() => {
+          setSuggestions([]);
+        }}
+      >
+        <ul className="lt-suggestion-list">
+          {loading && (
+            <div className="suggestions-loading-icon">
+              <Icon icon="spinner" spin />
+            </div>
+          )}
+          {suggestions.map((item, index) => {
+            const cls = classNames('suggestion-item', {
+              'is-active': index === highlightIndex,
+            });
 
-          return (
-            <li key={index} className={cls} onClick={() => handleSelect(item)}>
-              {renderTemplate(item)}
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li key={index} className={cls} onClick={() => handleSelect(item)}>
+                {renderTemplate(item)}
+              </li>
+            );
+          })}
+        </ul>
+      </Transition>
     );
   };
 
   return (
     <div className="lt-auto-complete" ref={componentRef}>
-      <Input value={inputValue} onChange={handleChange} {...restProps} onKeyDown={handleKeyDown} />
-      {loading && (
-        <ul>
-          <Icon icon="spinner" spin />
-        </ul>
-      )}
-      {suggestions.length > 0 && generateDropdown()}
+      <Input value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} {...restProps} />
+
+      {generateDropdown()}
     </div>
   );
 };
