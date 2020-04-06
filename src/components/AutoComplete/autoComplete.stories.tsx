@@ -43,12 +43,15 @@ const SimpleComplete = () => {
     { value: 'kuzma', number: 0 },
   ];
 
-  const handleFetch = (query: stirng) => {
-    return fetch(`https://api.github.com/search/users?q=${query}`)
-      .then((res) => res.json())
-      .then(({ items }) => {
-        return items.slice(0, 10).map((item: GithubUserProps) => ({ value: item.login, ...item }));
-      });
+  const handleFetch = (query: string) => {
+    return (
+      fetch(`https://api.github.com/search/users?q=${query}`)
+        // 将Response对象转化成json
+        .then((res) => res.json())
+        .then(({ items }) => {
+          return items.slice(0, 10).map((item: GithubUserProps) => ({ value: item.login, ...item }));
+        })
+    );
   };
 
   // const handleFetch = (query: string) => {
