@@ -8,6 +8,12 @@ interface LakerPlayerProps {
   number: number;
 }
 
+interface GithubUserProps {
+  login: string;
+  url: string;
+  avatar_url: string;
+}
+
 const SimpleComplete = () => {
   const lakers = [
     'bradley',
@@ -37,19 +43,27 @@ const SimpleComplete = () => {
     { value: 'kuzma', number: 0 },
   ];
 
+  const handleFetch = (query: stirng) => {
+    return fetch(`https://api.github.com/search/users?q=${query}`)
+      .then((res) => res.json())
+      .then(({ items }) => {
+        return items.slice(0, 10).map((item: GithubUserProps) => ({ value: item.login, ...item }));
+      });
+  };
+
   // const handleFetch = (query: string) => {
   //   return lakers.filter((name) => name.includes(query));
   // };
 
-  const handleFetch = (query: string) => {
-    return lakersWithNumber.filter((player) => player.value.includes(query));
-  };
+  // const handleFetch = (query: string) => {
+  //   return lakersWithNumber.filter((player) => player.value.includes(query));
+  // };
 
-  const renderOption = (item: DataSourceType<LakerPlayerProps>) => {
+  const renderOption = (item: DataSourceType<GithubUserProps>) => {
     return (
       <>
-        <h2>Name: {item.value}</h2>
-        <p>Number: {item.number}</p>
+        <span>昵称: {item.login}</span>
+        <img src={item.avatar_url} style={{ width: '20px', height: '20px' }} alt="头像" />
       </>
     );
   };
