@@ -4,7 +4,7 @@
 {
   "compilerOptions": {
     // 文件输出目录
-    "outDir": "build",
+    "outDir": "dist",
     // ESNext: 是标准的ES Modules形式
     "module": "esnext",
     // 指定编译以后符合什么样的ES标准
