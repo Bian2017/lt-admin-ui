@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef, ChangeEvent, ReactElement, Keyboa } from 'react';
+import React, { FC, useState, useEffect, useRef, ChangeEvent, ReactElement, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import Input, { InputProps } from '../Input/input';
 import Icon from '../Icon/icon';

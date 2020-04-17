@@ -120,3 +120,7 @@ CSSTransition：在组件淡入 appear，进场 enter,出场 exit 时，CSSTrans
 > npm test -- -t "auto"
 
 注："auto"表示测试用例的部分名称。
+
+### 3.2 rimraf
+
+由于 `rm -rf` 命令不兼容 windows，故需利用第三方依赖库`rimraf`来清空每次编译后的文件。
