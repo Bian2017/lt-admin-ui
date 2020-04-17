@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, fas } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import Button from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
@@ -19,7 +19,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Icon icon="coffee" theme="primary" size="10x" />
-        <Menu defaultIndex="0" onSelect={index => console.log(index)} mode={'vertical'}>
+        <Menu defaultIndex="0" onSelect={(index) => console.log(index)} mode={'vertical'}>
           <MenuItem>cool link</MenuItem>
           <MenuItem>cool link 2</MenuItem>
           <SubMenu title="dropdown">
