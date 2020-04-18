@@ -1,20 +1,21 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react'; // React Testing Library
+import '@testing-library/jest-dom/extend-expect';
 import Button, { ButtonProps } from './button';
 
 const defaultProps = {
-  onClick: jest.fn() // jest.fn创建模拟函数，检测是否被调用
+  onClick: jest.fn(), // jest.fn创建模拟函数，检测是否被调用
 };
 
 const testProps: ButtonProps = {
   btnType: 'primary',
   size: 'lg',
-  className: 'test-class'
+  className: 'test-class',
 };
 
 const disabledProps: ButtonProps = {
   disabled: true,
-  onClick: jest.fn()
+  onClick: jest.fn(),
 };
 
 // 先把组件测试cases进行分类

@@ -1,5 +1,7 @@
 import React from 'react';
 import { render, RenderResult, fireEvent, cleanup, wait } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
 
 import Menu, { MenuProps } from './menu';
 import MenuItem from './menuItem';
@@ -60,7 +62,11 @@ const createStyleFile = () => {
   return style;
 };
 
-let wrapper: RenderResult, menuElement: HTMLElement, activeElement: HTMLElement, disabledElement: HTMLElement;
+let wrapper: RenderResult,
+  wrapper2: RenderResult,
+  menuElement: HTMLElement,
+  activeElement: HTMLElement,
+  disabledElement: HTMLElement;
 
 describe('test Menu and MenuItem component', () => {
   /**
@@ -112,22 +118,6 @@ describe('test Menu and MenuItem component', () => {
     expect(testProps.onSelect).not.toHaveBeenCalledWith('1');
   });
 
-  it('should render vertical mode when mode is set to vertical', () => {
-    /**
-     * 调用cleanup避免变量命名存在冲突。在其他测试case中没有出现wrapper重复命名情况，是因为
-     * 框架自动调用了cleanup函数。
-     *
-     * Cleanup is called after each test automatically by default if the testing framework
-     * you're using supports the afterEach global (like mocha, Jest, and Jasmine).
-     */
-    cleanup();
-
-    const wrapper = render(generateMenu(testVerProps));
-    const menuElement = wrapper.getByTestId('test-menu');
-
-    expect(menuElement).toHaveClass('menu-vertical');
-  });
-
   it('should show dropdown items when hover on subMenu', async () => {
     // queryByText返回的元素是HTMLElement或者null，getByText返回的元素是HTMLElement
     // 因为元素有可能不存在，故选择queryByText方法
@@ -157,4 +147,25 @@ describe('test Menu and MenuItem component', () => {
   });
 
   // 待做：添加vertical下的两种测试用例，1) 点击submenu显示dropdown 2) 测试submenu默认展开下拉菜单功能
+});
+
+describe('test Menu and MenuItem component in vertical mode', () => {
+  beforeEach(() => {
+    wrapper2 = render(generateMenu(testVerProps));
+    wrapper2.container.append(createStyleFile());
+  });
+
+  it('should render vertical mode when mode is set to vertical', () => {
+    /**
+     * 调用cleanup避免变量命名存在冲突。在其他测试case中没有出现wrapper重复命名情况，是因为
+     * 框架自动调用了cleanup函数。
+     *
+     * Cleanup is called after each test automatically by default if the testing framework
+     * you're using supports the afterEach global (like mocha, Jest, and Jasmine).
+     */
+    // cleanup();
+    const menuElement = wrapper.getByTestId('test-menu');
+
+    expect(menuElement).toHaveClass('menu-vertical');
+  });
 });

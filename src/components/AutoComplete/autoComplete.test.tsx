@@ -1,5 +1,8 @@
 import React from 'react';
 import { render, RenderResult, fireEvent, wait } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/extend-expect';
+
 import AutoComplete, { AutoCompleteProps } from './autoComplete';
 import { config } from 'react-transition-group';
 
