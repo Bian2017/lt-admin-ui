@@ -62,11 +62,12 @@ const SimpleComplete = () => {
   //   return lakersWithNumber.filter((player) => player.value.includes(query));
   // };
 
-  const renderOption = (item: DataSourceType<GithubUserProps>) => {
+  const renderOption = (item: DataSourceType) => {
+    const itemWithGithub = item as DataSourceType<GithubUserProps>;
     return (
       <>
-        <span>昵称: {item.login}</span>
-        <img src={item.avatar_url} style={{ width: '20px', height: '20px' }} alt="头像" />
+        <span>昵称: {itemWithGithub.login}</span>
+        <img src={itemWithGithub.avatar_url} style={{ width: '20px', height: '20px' }} alt="头像" />
       </>
     );
   };
